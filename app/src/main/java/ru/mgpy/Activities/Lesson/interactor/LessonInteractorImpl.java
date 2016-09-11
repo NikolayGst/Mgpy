@@ -1,4 +1,4 @@
-package ru.mgpy.Activities.Lesson.interactor;
+package ru.mgpy.Activities.Lesson.Interactor;
 
 
 import com.google.gson.Gson;

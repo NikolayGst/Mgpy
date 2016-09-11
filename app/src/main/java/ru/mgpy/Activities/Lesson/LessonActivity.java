@@ -22,6 +22,9 @@ public class LessonActivity extends AppCompatActivity {
     @Extra
     String week;
 
+    @Extra
+    Integer group;
+
     @ViewById
     TabLayout tabs;
 

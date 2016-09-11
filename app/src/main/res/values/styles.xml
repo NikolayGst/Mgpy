@@ -15,6 +15,7 @@
 
     <style name="noActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="Red" parent="Theme.AppCompat.Light.NoActionBar">
