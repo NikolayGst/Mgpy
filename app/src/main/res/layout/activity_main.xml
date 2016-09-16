@@ -63,7 +63,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/greenWeek"
             android:layout_marginTop="16dp"
-            android:text="Вторая подгруппа (314/22і)"
+            android:textSize="16sp"
+            android:text="Первая подгруппа (314/22і)"
             android:textColor="@android:color/white"
             android:textStyle="bold"/>
 
@@ -72,7 +73,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/first"
-            android:text="Первая подгруппа (314/21і)"
+            android:layout_marginTop="6dp"
+            android:textSize="16sp"
+            android:text="Вторая подгруппа (314/21і)"
             android:textColor="@android:color/white"
             android:textStyle="bold"/>
 
