@@ -11,9 +11,6 @@ import java.util.List;
 import ru.mgpy.Model.Schedule;
 import ru.mgpy.R;
 
-/**
- * Created by Николай on 03.09.2016.
- */
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHolder> {
 
     private List<Schedule> items;
@@ -35,7 +32,10 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     public void onBindViewHolder(ScheduleAdapter.ViewHolder holder, int position) {
         Schedule item = items.get(position);
         holder.lesson.setText(item.getLesson());
-        holder.cab.setText("кб. " + item.getCab());
+        if (item.getCab() != 1) holder.cab.setText("кб. " + item.getCab());
+        else holder.cab.setText("");
+        if (item.getCategory().equals("")) holder.category.setVisibility(View.GONE);
+        holder.category.setText(item.getCategory());
     }
 
     @Override
@@ -49,10 +49,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView lesson;
         TextView cab;
+        TextView category;
         public ViewHolder(View itemView) {
             super(itemView);
             lesson = (TextView) itemView.findViewById(R.id.lesson);
             cab = (TextView) itemView.findViewById(R.id.cab);
+            category = (TextView) itemView.findViewById(R.id.category);
         }
     }
 }

@@ -9,13 +9,18 @@ import ru.mgpy.Activities.Lesson.LessonListFragment;
 
 public class LessonAdapter extends FragmentPagerAdapter {
 
-    public LessonAdapter(FragmentManager fm) {
+    private int group;
+    private String week;
+
+    public LessonAdapter(FragmentManager fm, int group, String week) {
         super(fm);
+        this.group = group;
+        this.week = week;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return LessonListFragment.newInstance(position);
+        return LessonListFragment.newInstance(position, group, week);
     }
 
     @Override

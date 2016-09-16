@@ -12,10 +12,10 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
 
-import ru.mgpy.Adapter.ScheduleAdapter;
 import ru.mgpy.Activities.Lesson.Presenter.LessonPresenter;
 import ru.mgpy.Activities.Lesson.Presenter.LessonPresenterImpl;
 import ru.mgpy.Activities.Lesson.View.LessonView;
+import ru.mgpy.Adapter.ScheduleAdapter;
 import ru.mgpy.Model.Schedule;
 import ru.mgpy.R;
 
@@ -29,27 +29,29 @@ public class LessonListFragment extends Fragment implements LessonView {
     private RecyclerView.LayoutManager mLayoutManager;
     private ScheduleAdapter mScheduleAdapter;
 
-    public static LessonListFragment_ newInstance(int position) {
+    public static LessonListFragment_ newInstance(int position, int group, String week) {
         Bundle args = new Bundle();
         args.putInt("position", position);
+        args.putInt("group", group);
+        args.putString("week", week);
         LessonListFragment_ fragment = new LessonListFragment_();
         fragment.setArguments(args);
         return fragment;
     }
 
     @AfterViews
-    void init(){
+    void init() {
 
         initRecycler();
 
         Bundle bundle = getArguments();
         if (bundle != null) {
             mLessonPresenter = new LessonPresenterImpl(this);
-           mLessonPresenter.getLesson(bundle.getInt("position"));
+            mLessonPresenter.getLesson(bundle.getInt("position"), bundle.getInt("group"), bundle.getString("week"));
         }
     }
 
-    private void initRecycler(){
+    private void initRecycler() {
         mScheduleAdapter = new ScheduleAdapter();
         mLayoutManager = new LinearLayoutManager(getContext());
         recycler.setLayoutManager(mLayoutManager);

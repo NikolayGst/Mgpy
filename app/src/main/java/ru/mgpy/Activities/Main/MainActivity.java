@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @AfterViews
     void init() {
+        first.setChecked(false);
+        second.setChecked(false);
         first.setOnClickListener(this);
         second.setOnClickListener(this);
     }

@@ -6,7 +6,7 @@ import ru.mgpy.Model.Schedule;
 
 public interface LessonPresenter {
 
-    void getLesson(int id);
+    void getLesson(int id, int group, String week);
 
     void onLoadLesson(List<Schedule> schedules);
 

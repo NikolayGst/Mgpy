@@ -10,6 +10,9 @@ public class Schedule {
     @SerializedName("cab")
     @Expose
     private int cab;
+    @SerializedName("category")
+    @Expose
+    private String category;
 
     /**
      *
@@ -45,5 +48,13 @@ public class Schedule {
      */
     public void setCab(int cab) {
         this.cab = cab;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

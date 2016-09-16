@@ -57,7 +57,7 @@ public class LessonActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         if (week.equals("red")) setTitle("Красная неделя");
         else  setTitle("Зеленая неделя");
-        mLessonAdapter = new LessonAdapter(getSupportFragmentManager());
+        mLessonAdapter = new LessonAdapter(getSupportFragmentManager(), group, week);
         container.setAdapter(mLessonAdapter);
         tabs.setupWithViewPager(container);
     }
