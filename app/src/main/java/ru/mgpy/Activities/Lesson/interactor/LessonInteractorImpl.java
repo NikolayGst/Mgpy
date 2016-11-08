@@ -27,7 +27,7 @@ public class LessonInteractorImpl implements LessonInteractor {
     }
 
     @Override
-    public void loadLessonList(int id, int group, String week) {
+    public void loadLessonList(int id, String group, String week) {
         mGson = new Gson();
         mLessonList = new ArrayList<>();
         initList(group, week);
@@ -35,14 +35,14 @@ public class LessonInteractorImpl implements LessonInteractor {
         if (lesson != null) mLessonPresenter.onLoadLesson(lesson.getSchedule());
     }
 
-    private void initList(int group, String week) {
+    private void initList(String group, String week) {
         String json = "";
         switch (week) {
             case "red":
-                json = group == 1 ? red22group : red21group;
+                json = group.equals("314/22i") ? red22group : red21group;
                 break;
             case "green":
-                json = group == 1 ? green22group : green21group;
+                json = group.equals("314/22i") ? green22group : green21group;
                 break;
         }
         JsonReader reader = new JsonReader(new StringReader(json));

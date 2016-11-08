@@ -29,10 +29,10 @@ public class LessonListFragment extends Fragment implements LessonView {
     private RecyclerView.LayoutManager mLayoutManager;
     private ScheduleAdapter mScheduleAdapter;
 
-    public static LessonListFragment_ newInstance(int position, int group, String week) {
+    public static LessonListFragment_ newInstance(int position, String group, String week) {
         Bundle args = new Bundle();
         args.putInt("position", position);
-        args.putInt("group", group);
+        args.putString("group", group);
         args.putString("week", week);
         LessonListFragment_ fragment = new LessonListFragment_();
         fragment.setArguments(args);
@@ -47,7 +47,7 @@ public class LessonListFragment extends Fragment implements LessonView {
         Bundle bundle = getArguments();
         if (bundle != null) {
             mLessonPresenter = new LessonPresenterImpl(this);
-            mLessonPresenter.getLesson(bundle.getInt("position"), bundle.getInt("group"), bundle.getString("week"));
+            mLessonPresenter.getLesson(bundle.getInt("position"), bundle.getString("group"), bundle.getString("week"));
         }
     }
 

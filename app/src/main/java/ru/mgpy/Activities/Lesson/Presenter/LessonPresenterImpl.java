@@ -19,7 +19,7 @@ public class LessonPresenterImpl implements LessonPresenter {
     }
 
     @Override
-    public void getLesson(int id, int group, String week) {
+    public void getLesson(int id, String group, String week) {
         mLessonInteractor.loadLessonList(id, group, week);
     }
 

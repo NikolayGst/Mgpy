@@ -5,14 +5,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Toast;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
 import java.util.Random;
 
+import ru.mgpy.Activities.Lesson.LessonActivity_;
 import ru.mgpy.Activities.Main.Presenter.MainPresenter;
 import ru.mgpy.Activities.Main.Presenter.MainPresenterImpl;
 import ru.mgpy.Activities.Main.View.MainView;
@@ -23,7 +27,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     //private int[] image = {R.drawable.bg, R.drawable.mdpy1};
     private Random mRandom = new Random();
-    private int group;
+    private String group;
+
+    @ViewById
+    Button btnShowLessons;
 
     @ViewById
     android.support.v7.widget.AppCompatSpinner spinSelectFac;
@@ -112,11 +119,26 @@ public class MainActivity extends AppCompatActivity implements MainView {
         groupAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinSelectGroup.setAdapter(groupAdapter);
 
+        spinSelectChair.setEnabled(false);
+        spinSelectGroup.setEnabled(false);
+
         spinSelectFac.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i != 0)
-                mMainPresenter.getChair(i);
+
+                chairAdapter.clear();
+                chairAdapter.notifyDataSetChanged();
+                groupAdapter.clear();
+                groupAdapter.notifyDataSetChanged();
+
+                if (i != 0) {
+                    mMainPresenter.getChair(i);
+                    spinSelectChair.setEnabled(true);
+                } else {
+                    spinSelectChair.setEnabled(false);
+                    spinSelectGroup.setEnabled(false);
+                }
+
             }
 
             @Override
@@ -127,9 +149,16 @@ public class MainActivity extends AppCompatActivity implements MainView {
         spinSelectChair.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i != 0)
-                    mMainPresenter.getGroup(i);
 
+                groupAdapter.clear();
+                groupAdapter.notifyDataSetChanged();
+
+                if (i != 0) {
+                    mMainPresenter.getGroup(i);
+                    spinSelectGroup.setEnabled(true);
+                } else {
+                    spinSelectGroup.setEnabled(false);
+                }
             }
 
             @Override
@@ -140,8 +169,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         spinSelectGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i != 0) {}
-
+                   group = (String) adapterView.getSelectedItem();
             }
 
             @Override
@@ -150,6 +178,14 @@ public class MainActivity extends AppCompatActivity implements MainView {
             }
         });
     }
+
+    @Click(R.id.btnShowLessons)
+    void showLessons() {
+        if (group != null && !group.equals("Оберіть вашу групу") && !group.equals(""))
+        LessonActivity_.intent(this).group(group).week("red").start();
+        else
+            Toast.makeText(this, "Оберіть, будь-ласка, вашу групу", Toast.LENGTH_SHORT).show();
+    } 
 
     public void initProgressDialog() {
         mProgressDialog = new ProgressDialog(this);

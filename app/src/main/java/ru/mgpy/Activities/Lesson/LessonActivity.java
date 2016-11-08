@@ -23,7 +23,7 @@ public class LessonActivity extends AppCompatActivity {
     String week;
 
     @Extra
-    Integer group;
+    String group;
 
     @ViewById
     TabLayout tabs;
@@ -62,8 +62,8 @@ public class LessonActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        if (week.equals("red")) setTitle("Красная неделя");
-        else  setTitle("Зеленая неделя");
+        if (week.equals("red")) setTitle("Червоний тиждень");
+        else  setTitle("Зелений тиждень");
         mLessonAdapter = new LessonAdapter(getSupportFragmentManager(), group, week);
         container.setAdapter(mLessonAdapter);
         tabs.setupWithViewPager(container);

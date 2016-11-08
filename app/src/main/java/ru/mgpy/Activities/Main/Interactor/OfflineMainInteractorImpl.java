@@ -26,7 +26,7 @@ public class OfflineMainInteractorImpl implements MainInteractor {
             public void run() {
                 mOnLoadResponseListener.OnLoadFac(facList);
             }
-        }, 5000);
+        }, 2000);
     }
 
     @Override
@@ -48,10 +48,10 @@ public class OfflineMainInteractorImpl implements MainInteractor {
                     public void run() {
                         mOnLoadResponseListener.OnLoadChair(chairList);
                     }
-                }, 5000);
+                }, 2000);
                 break;
-            case 2:
-                break;
+            default:
+                mOnLoadResponseListener.OnLoadChair(new ArrayList<String>());
         }
     }
 
@@ -72,10 +72,10 @@ public class OfflineMainInteractorImpl implements MainInteractor {
                     public void run() {
                         mOnLoadResponseListener.OnLoadGroup(groupList);
                     }
-                }, 5000);
+                }, 2000);
                 break;
-            case 3:
-                break;
+           default:
+               mOnLoadResponseListener.OnLoadGroup(new ArrayList<String>());
         }
 
     }

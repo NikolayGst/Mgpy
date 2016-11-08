@@ -9,10 +9,10 @@ import ru.mgpy.Activities.Lesson.LessonListFragment;
 
 public class LessonAdapter extends FragmentPagerAdapter {
 
-    private int group;
+    private String group;
     private String week;
 
-    public LessonAdapter(FragmentManager fm, int group, String week) {
+    public LessonAdapter(FragmentManager fm, String group, String week) {
         super(fm);
         this.group = group;
         this.week = week;
