@@ -19,7 +19,7 @@ import ru.mgpy.R;
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private int[] image = {R.drawable.bg, R.drawable.mdpy1, R.drawable.stud, R.drawable.stud2, R.drawable.stud3};
+    private int[] image = {R.drawable.bg, R.drawable.mdpy1};
     private Random mRandom = new Random();
     private int group;
 

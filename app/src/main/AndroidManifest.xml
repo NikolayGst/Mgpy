@@ -11,10 +11,12 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activities.Lesson.LessonActivity_"
+            android:screenOrientation="portrait"
             android:label="@string/app_name">
         </activity>
         <activity
             android:name=".Activities.Main.MainActivity_"
+            android:screenOrientation="portrait"
             android:theme="@style/noActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

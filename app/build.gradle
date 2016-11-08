@@ -8,8 +8,8 @@ android {
         applicationId "ru.mgpy"
         minSdkVersion 14
         targetSdkVersion 24
-        versionCode 3
-        versionName "1.2"
+        versionCode 5
+        versionName "1.4"
     }
     buildTypes {
         release {
@@ -21,13 +21,15 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
     apt "org.androidannotations:androidannotations:4.0.0"
     compile 'org.androidannotations:androidannotations-api:4.0.0'
-    compile 'com.android.support:appcompat-v7:24.0.0'
-    compile 'com.android.support:design:24.0.0'
-    compile 'com.android.support:design:24.0.0'
-    compile 'com.android.support:recyclerview-v7:24.0.0'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+    compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.google.code.gson:gson:2.4'
-    compile 'com.android.support:support-v13:24.0.0'
+    compile 'com.android.support:support-v13:24.2.1'
+    compile 'joda-time:joda-time:2.3'
+   /* compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.sromku:simple-storage:1.2.0'*/
 }

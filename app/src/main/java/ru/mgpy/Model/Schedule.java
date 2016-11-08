@@ -13,39 +13,22 @@ public class Schedule {
     @SerializedName("category")
     @Expose
     private String category;
+    @SerializedName("teacher")
+    @Expose
+    private String teacher;
 
-    /**
-     *
-     * @return
-     * The lesson
-     */
     public String getLesson() {
         return lesson;
     }
 
-    /**
-     *
-     * @param lesson
-     * The lesson
-     */
     public void setLesson(String lesson) {
         this.lesson = lesson;
     }
 
-    /**
-     *
-     * @return
-     * The cab
-     */
     public int getCab() {
         return cab;
     }
 
-    /**
-     *
-     * @param cab
-     * The cab
-     */
     public void setCab(int cab) {
         this.cab = cab;
     }
@@ -56,5 +39,13 @@ public class Schedule {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
     }
 }

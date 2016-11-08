@@ -4,14 +4,14 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
-
-import java.util.Calendar;
+import org.joda.time.LocalDate;
 
 import ru.mgpy.Adapter.LessonAdapter;
 import ru.mgpy.R;
@@ -55,6 +55,13 @@ public class LessonActivity extends AppCompatActivity {
 
     private void initView() {
         setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.mipmap.ic_arrow);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         if (week.equals("red")) setTitle("Красная неделя");
         else  setTitle("Зеленая неделя");
         mLessonAdapter = new LessonAdapter(getSupportFragmentManager(), group, week);
@@ -63,23 +70,22 @@ public class LessonActivity extends AppCompatActivity {
     }
 
     private void dayOfWeek() {
-        Calendar calendar = Calendar.getInstance();
         int day = -1;
-        int calDay = calendar.get(Calendar.DAY_OF_WEEK);
-        switch (calDay) {
-            case Calendar.MONDAY:
+        LocalDate date = LocalDate.now();
+        switch (date.getDayOfWeek()) {
+            case 1:
                 day = 0;
                 break;
-            case Calendar.THURSDAY:
+            case 2:
                 day = 1;
                 break;
-            case Calendar.WEDNESDAY:
+            case 3:
                 day = 2;
                 break;
-            case Calendar.TUESDAY:
+            case 4:
                 day = 3;
                 break;
-            case Calendar.FRIDAY:
+            case 5:
                 day = 4;
                 break;
         }

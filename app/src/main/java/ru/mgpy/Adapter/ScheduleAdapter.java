@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -34,8 +35,13 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         holder.lesson.setText(item.getLesson());
         if (item.getCab() != 1) holder.cab.setText("кб. " + item.getCab());
         else holder.cab.setText("");
-        if (item.getCategory().equals("")) holder.category.setVisibility(View.GONE);
-        holder.category.setText(item.getCategory());
+        if ((item.getCategory() == null || item.getCategory().equals(""))
+                && (item.getTeacher() == null || item.getTeacher().equals(""))) {
+            holder.rlt2.setVisibility(View.GONE);
+        } else {
+            holder.category.setText(item.getCategory());
+            holder.teacher.setText(item.getTeacher());
+        }
     }
 
     @Override
@@ -50,11 +56,15 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         TextView lesson;
         TextView cab;
         TextView category;
+        TextView teacher;
+        LinearLayout rlt2;
         public ViewHolder(View itemView) {
             super(itemView);
             lesson = (TextView) itemView.findViewById(R.id.lesson);
             cab = (TextView) itemView.findViewById(R.id.cab);
             category = (TextView) itemView.findViewById(R.id.category);
+            teacher = (TextView) itemView.findViewById(R.id.teacher);
+            rlt2 = (LinearLayout) itemView.findViewById(R.id.rlt2);
         }
     }
 }
