@@ -8,16 +8,17 @@
 
     <ImageView
         android:id="@+id/bg"
-        android:src="@drawable/bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/grey"
         android:scaleType="centerCrop"/>
 
     <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -29,56 +30,116 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="35dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Группа 314/2і"
-            android:textColor="@android:color/white"
-            android:textSize="45sp"/>
+            android:fontFamily="sans-serif"
+            android:text="Розклад занять МДПУ"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"/>
 
+        <TextView
+            android:id="@+id/txtFac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:fontFamily="sans-serif"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="Факультет:"
+            android:textColor="@android:color/black"/>
+
+        <LinearLayout
+            android:id="@+id/lrFac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtFac"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_textview"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp">
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spinSelectFac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtChair"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lrFac"
+            android:fontFamily="sans-serif"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="Кафедра:"
+            android:textColor="@android:color/black"/>
+
+        <LinearLayout
+            android:id="@+id/lrChair"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtChair"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_textview"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp">
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spinSelectChair"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lrGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtGroup"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bg_textview"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp">
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spinSelectGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog"/>
+        </LinearLayout>
 
         <Button
-            android:id="@+id/redWeek"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@color/red"
-            android:text="Красная неделя"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"/>
+            android:layout_below="@id/lrGroup"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="32dp"
+            android:background="@color/colorBlue"
+            android:text="Дізнатися розклад"
+            android:textColor="@android:color/white"/>
+        <!-- <android.support.v7.widget.AppCompatRadioButton
+             android:id="@+id/first"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@id/lrGroup"
+             android:layout_marginTop="16dp"
+             android:text="Первая подгруппа (314/22і)"
+             android:textColor="@android:color/white"
+             android:textSize="16sp"
+             android:textStyle="bold"/>
 
-        <Button
-            android:id="@+id/greenWeek"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/redWeek"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="16dp"
-            android:background="@color/green"
-            android:text="Зеленая неделя"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"/>
-
-
-        <android.support.v7.widget.AppCompatRadioButton
-            android:id="@+id/first"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/greenWeek"
-            android:layout_marginTop="16dp"
-            android:textSize="16sp"
-            android:text="Первая подгруппа (314/22і)"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"/>
-
-        <android.support.v7.widget.AppCompatRadioButton
-            android:id="@+id/second"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/first"
-            android:layout_marginTop="6dp"
-            android:textSize="16sp"
-            android:text="Вторая подгруппа (314/21і)"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"/>
+         <android.support.v7.widget.AppCompatRadioButton
+             android:id="@+id/second"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@id/first"
+             android:layout_marginTop="6dp"
+             android:text="Вторая подгруппа (314/21і)"
+             android:textColor="@android:color/white"
+             android:textSize="16sp"
+             android:textStyle="bold"/>-->
 
 
         <TextView
@@ -89,5 +150,18 @@
             android:gravity="center"
             android:text="Nikolay Gustilin"
             android:textColor="@android:color/white"/>
+
+        <TextView
+            android:id="@+id/txtGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/lrChair"
+            android:fontFamily="sans-serif"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="Група:"
+            android:textColor="@android:color/black"/>
     </RelativeLayout>
 </RelativeLayout>
