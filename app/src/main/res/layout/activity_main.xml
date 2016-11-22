@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:openDrawer="end">
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <ImageView
         android:id="@+id/bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey"
+        android:background="@drawable/bg_mdpu"
+
         android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:id="@+id/nav"
+        android:layout_marginLeft="8dp"
+        android:layout_width="32dp"
+        android:src="@mipmap/ic_menu"
+        android:layout_height="32dp"/>
+</RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,7 +41,6 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context=".Activities.Main.MainActivity"
-        android:layout_below="@+id/bg"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
@@ -32,7 +51,7 @@
             android:layout_marginTop="35dp"
             android:fontFamily="sans-serif"
             android:text="Розклад занять МДПУ"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="30sp"/>
 
         <TextView
@@ -44,7 +63,7 @@
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
             android:text="Факультет:"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/white"/>
 
         <LinearLayout
             android:id="@+id/lrFac"
@@ -63,22 +82,11 @@
                 android:spinnerMode="dialog"/>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/txtChair"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/lrFac"
-            android:fontFamily="sans-serif"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
-            android:text="Кафедра:"
-            android:textColor="@android:color/black"/>
-
         <LinearLayout
             android:id="@+id/lrChair"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txtChair"
+            android:layout_below="@+id/txtChair"
             android:layout_centerInParent="true"
             android:layout_marginBottom="16dp"
             android:background="@drawable/bg_textview"
@@ -163,6 +171,36 @@
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
             android:text="Група:"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:id="@+id/txtChair"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="Кафедра:"
+            android:textColor="@android:color/white"
+            android:layout_below="@+id/lrFac"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
     </RelativeLayout>
+
+
+
 </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+
+        android:background="#FFF">
+
+        <include layout="@layout/menu_nav"/>
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

@@ -1,6 +1,8 @@
 package ru.mgpy.Activities.Main;
 
 import android.app.ProgressDialog;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @ViewById
     android.support.v7.widget.AppCompatSpinner spinSelectGroup;
+
+    @ViewById(R.id.drawer_layout)
+    DrawerLayout drawer;
 
    /* @ViewById
     AppCompatRadioButton first;
@@ -104,6 +109,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         mMainPresenter.getFac();
 
+    }
+
+    @Click(R.id.nav)
+    void openMenu() {
+        if (!drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.openDrawer(GravityCompat.START);
+        }
     }
 
     private void initAdapter() {
@@ -182,10 +194,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Click(R.id.btnShowLessons)
     void showLessons() {
         if (group != null && !group.equals("Оберіть вашу групу") && !group.equals(""))
-        LessonActivity_.intent(this).group(group).week("red").start();
+        LessonActivity_.intent(this).group(group).week("green").start();
         else
             Toast.makeText(this, "Оберіть, будь-ласка, вашу групу", Toast.LENGTH_SHORT).show();
-    } 
+    }
 
     public void initProgressDialog() {
         mProgressDialog = new ProgressDialog(this);

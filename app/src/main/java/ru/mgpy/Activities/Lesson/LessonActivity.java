@@ -1,5 +1,7 @@
 package ru.mgpy.Activities.Lesson;
 
+import android.content.res.ColorStateList;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +10,11 @@ import android.view.View;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.res.ColorRes;
 import org.joda.time.LocalDate;
 
 import ru.mgpy.Adapter.LessonAdapter;
@@ -25,6 +29,12 @@ public class LessonActivity extends AppCompatActivity {
     @Extra
     String group;
 
+    @ColorRes(R.color.green)
+    int green;
+
+    @ColorRes(R.color.red)
+    int red;
+
     @ViewById
     TabLayout tabs;
 
@@ -33,6 +43,9 @@ public class LessonActivity extends AppCompatActivity {
 
     @ViewById
     ViewPager container;
+
+    @ViewById
+    FloatingActionButton fabWeek;
 
     private LessonAdapter mLessonAdapter;
 
@@ -53,6 +66,20 @@ public class LessonActivity extends AppCompatActivity {
 
     }
 
+    @Click(R.id.fabWeek)
+    void changeWeek() {
+        switch (week) {
+            case "red":
+                LessonActivity_.intent(this).group(group).week("green").start();
+                finish();
+                break;
+            case "green":
+                LessonActivity_.intent(this).group(group).week("red").start();
+                finish();
+                break;
+        }
+    }
+
     private void initView() {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_arrow);
@@ -62,8 +89,13 @@ public class LessonActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        if (week.equals("red")) setTitle("Червоний тиждень");
-        else  setTitle("Зелений тиждень");
+        if (week.equals("red")) {
+            setTitle("Червоний тиждень");
+            fabWeek.setBackgroundTintList(ColorStateList.valueOf(green));
+        } else {
+            setTitle("Зелений тиждень");
+            fabWeek.setBackgroundTintList(ColorStateList.valueOf(red));
+        }
         mLessonAdapter = new LessonAdapter(getSupportFragmentManager(), group, week);
         container.setAdapter(mLessonAdapter);
         tabs.setupWithViewPager(container);
