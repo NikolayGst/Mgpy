@@ -3,9 +3,9 @@ package ru.mgpy.Activities.Lesson.Presenter;
 
 import java.util.List;
 
-import ru.mgpy.Activities.Lesson.View.LessonView;
 import ru.mgpy.Activities.Lesson.Interactor.LessonInteractor;
 import ru.mgpy.Activities.Lesson.Interactor.LessonInteractorImpl;
+import ru.mgpy.Activities.Lesson.View.LessonView;
 import ru.mgpy.Model.Schedule;
 
 public class LessonPresenterImpl implements LessonPresenter {

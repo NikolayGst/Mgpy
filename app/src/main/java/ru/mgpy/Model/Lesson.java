@@ -1,3 +1,4 @@
+
 package ru.mgpy.Model;
 
 import com.google.gson.annotations.Expose;
@@ -8,15 +9,47 @@ import java.util.List;
 
 public class Lesson {
 
-    @SerializedName("schedule")
+    @SerializedName("red")
     @Expose
-    private List<Schedule> schedule = new ArrayList<Schedule>();
+    private List<Red> red = new ArrayList<Red>();
+    @SerializedName("green")
+    @Expose
+    private List<Green> green = new ArrayList<Green>();
 
-    public List<Schedule> getSchedule() {
-        return schedule;
+    /**
+     * 
+     * @return
+     *     The red
+     */
+    public List<Red> getRed() {
+        return red;
     }
 
-    public void setSchedule(List<Schedule> schedule) {
-        this.schedule = schedule;
+    /**
+     * 
+     * @param red
+     *     The red
+     */
+    public void setRed(List<Red> red) {
+        this.red = red;
     }
+
+    /**
+     * 
+     * @return
+     *     The green
+     */
+    public List<Green> getGreen() {
+        return green;
+    }
+
+    /**
+     * 
+     * @param green
+     *     The green
+     */
+    public void setGreen(List<Green> green) {
+        this.green = green;
+    }
+
 }

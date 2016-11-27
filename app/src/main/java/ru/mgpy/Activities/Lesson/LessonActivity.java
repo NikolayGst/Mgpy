@@ -98,6 +98,7 @@ public class LessonActivity extends AppCompatActivity {
         }
         mLessonAdapter = new LessonAdapter(getSupportFragmentManager(), group, week);
         container.setAdapter(mLessonAdapter);
+        container.setOffscreenPageLimit(5);
         tabs.setupWithViewPager(container);
     }
 

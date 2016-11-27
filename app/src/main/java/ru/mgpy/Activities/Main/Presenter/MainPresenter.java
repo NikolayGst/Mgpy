@@ -8,4 +8,6 @@ public interface MainPresenter {
 
     void getGroup(int idChair);
 
+    void loadGroupLesson(String group);
+
 }

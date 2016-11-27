@@ -10,6 +10,7 @@ public interface MainInteractor {
 
     void loadGroupData(int idChair);
 
+    void loadGroupLesson(String group);
 
     interface OnLoadResponseListener {
 
@@ -18,6 +19,8 @@ public interface MainInteractor {
         void OnLoadChair(List<String> chairList);
 
         void OnLoadGroup(List<String> groupList);
+
+        void OnLoadLesson(String group);
 
         void OnError(Exception ex);
 

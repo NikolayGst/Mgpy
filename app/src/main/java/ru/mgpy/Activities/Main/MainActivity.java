@@ -4,10 +4,13 @@ import android.app.ProgressDialog;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.androidannotations.annotations.AfterViews;
@@ -18,11 +21,17 @@ import org.androidannotations.annotations.ViewById;
 import java.util.List;
 import java.util.Random;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
 import ru.mgpy.Activities.Lesson.LessonActivity_;
 import ru.mgpy.Activities.Main.Presenter.MainPresenter;
 import ru.mgpy.Activities.Main.Presenter.MainPresenterImpl;
 import ru.mgpy.Activities.Main.View.MainView;
+import ru.mgpy.Adapter.GroupAdapter;
+import ru.mgpy.Model.DB.Group;
 import ru.mgpy.R;
+
+import static ru.mgpy.R.id.lesson;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity implements MainView {
@@ -30,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
     //private int[] image = {R.drawable.bg, R.drawable.mdpy1};
     private Random mRandom = new Random();
     private String group;
+
+    @ViewById
+    TextView txtGroupSave;
 
     @ViewById
     Button btnShowLessons;
@@ -46,50 +58,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @ViewById(R.id.drawer_layout)
     DrawerLayout drawer;
 
-   /* @ViewById
-    AppCompatRadioButton first;
-
     @ViewById
-    AppCompatRadioButton second;*/
+    RecyclerView recycler;
 
-  /*  @ViewById(R.id.bg)
-    void setImage(ImageView background) {
-        background.setImageResource(image[mRandom.nextInt(image.length)]);
-    }*/
-
- /*   @AfterViews
-    void init() {
-        *//*first.setChecked(false);
-        second.setChecked(false);
-        first.setOnClickListener(this);
-        second.setOnClickListener(this);*//*
-    }*/
-
-  /*  @Click(R.id.redWeek)
-    void loadRedWeek() {
-        if (group == 0) Toast.makeText(MainActivity.this, "Выберите подгруппу", Toast.LENGTH_SHORT).show();
-        else LessonActivity_.intent(this).week("red").group(group).start();
-    }
-
-    @Click(R.id.greenWeek)
-    void loadGreenWeek() {
-        if (group == 0) Toast.makeText(MainActivity.this, "Выберите подгруппу", Toast.LENGTH_SHORT).show();
-        else LessonActivity_.intent(this).week("green").group(group).start();
-    }
-*/
-  /*  @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.first:
-                second.setChecked(false);
-                group = 1;
-                break;
-            case R.id.second:
-                first.setChecked(false);
-                group = 2;
-                break;
-        }
-    }*/
+    private GroupAdapter mGroupAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     private ArrayAdapter<String> facAdapter;
     private ArrayAdapter<String> chairAdapter;
@@ -105,10 +78,37 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         initAdapter();
 
+        initRecycler();
+
         mMainPresenter = new MainPresenterImpl(this);
 
         mMainPresenter.getFac();
 
+    }
+
+    private void initRecycler() {
+        mLayoutManager = new LinearLayoutManager(this);
+        mGroupAdapter = new GroupAdapter();
+        recycler.setLayoutManager(mLayoutManager);
+        recycler.setAdapter(mGroupAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mGroupAdapter.clear();
+        RealmResults<Group> groupRealmList = Realm.getDefaultInstance().where(Group.class).findAll();
+        if (groupRealmList.size() != 0) {
+            for (Group group : groupRealmList) {
+                mGroupAdapter.addGroup(group.getGroup());
+            }
+        }
+    }
+
+    @Click(R.id.txtGroupSave)
+    void click() {
+        if (txtGroupSave.getText().length() != 0)
+            LessonActivity_.intent(this).group(txtGroupSave.getText().toString()).week("green").start();
     }
 
     @Click(R.id.nav)
@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         spinSelectGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                   group = (String) adapterView.getSelectedItem();
+                group = (String) adapterView.getSelectedItem();
             }
 
             @Override
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Click(R.id.btnShowLessons)
     void showLessons() {
         if (group != null && !group.equals("Оберіть вашу групу") && !group.equals(""))
-        LessonActivity_.intent(this).group(group).week("green").start();
+            mMainPresenter.loadGroupLesson(group);
         else
             Toast.makeText(this, "Оберіть, будь-ласка, вашу групу", Toast.LENGTH_SHORT).show();
     }
@@ -203,7 +203,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setCancelable(false);
     }
-
 
     @Override
     public void showProgressDialog(String text) {
@@ -235,6 +234,12 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public void OnLoadGroup(List<String> groupList) {
         groupAdapter.addAll(groupList);
         groupAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void OnLoadLesson(String group) {
+        System.out.println(lesson);
+        LessonActivity_.intent(this).group(group).week("green").start();
     }
 
     @Override

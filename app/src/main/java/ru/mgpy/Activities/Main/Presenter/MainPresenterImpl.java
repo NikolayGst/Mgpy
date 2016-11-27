@@ -34,6 +34,12 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnLoadRe
         mMainInteractor.loadGroupData(idChair);
     }
 
+    @Override
+    public void loadGroupLesson(String group) {
+        mMainView.showProgressDialog("загрузка расписаний...");
+        mMainInteractor.loadGroupLesson(group);
+    }
+
     //Методы после удачной загрузки
     @Override
     public void OnLoadFac(List<String> facList) {
@@ -51,6 +57,12 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnLoadRe
     public void OnLoadGroup(List<String> groupList) {
         mMainView.hideProgressDialog();
         mMainView.OnLoadGroup(groupList);
+    }
+
+    @Override
+    public void OnLoadLesson(String group) {
+        mMainView.hideProgressDialog();
+        mMainView.OnLoadLesson(group);
     }
 
     @Override

@@ -14,7 +14,10 @@ public interface MainView {
 
     void OnLoadGroup(List<String> groupList);
 
+    void OnLoadLesson(String group);
+
     void OnErrorLoaded(Exception ex);
+
 
 
 }
