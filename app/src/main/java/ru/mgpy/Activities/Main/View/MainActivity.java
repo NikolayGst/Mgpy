@@ -1,4 +1,4 @@
-package ru.mgpy.Activities.Main;
+package ru.mgpy.Activities.Main.View;
 
 import android.app.ProgressDialog;
 import android.support.v4.view.GravityCompat;
@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,14 +18,12 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
-import java.util.Random;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
-import ru.mgpy.Activities.Lesson.LessonActivity_;
+import ru.mgpy.Activities.Lesson.View.LessonActivity_;
 import ru.mgpy.Activities.Main.Presenter.MainPresenter;
 import ru.mgpy.Activities.Main.Presenter.MainPresenterImpl;
-import ru.mgpy.Activities.Main.View.MainView;
 import ru.mgpy.Adapter.GroupAdapter;
 import ru.mgpy.Model.DB.Group;
 import ru.mgpy.R;
@@ -36,15 +33,10 @@ import static ru.mgpy.R.id.lesson;
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity implements MainView {
 
-    //private int[] image = {R.drawable.bg, R.drawable.mdpy1};
-    private Random mRandom = new Random();
     private String group;
 
     @ViewById
     TextView txtGroupSave;
-
-    @ViewById
-    Button btnShowLessons;
 
     @ViewById
     android.support.v7.widget.AppCompatSpinner spinSelectFac;
@@ -219,31 +211,31 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void OnLoadFac(List<String> facList) {
+    public void onLoadFac(List<String> facList) {
         facAdapter.addAll(facList);
         facAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void OnLoadChair(List<String> chairList) {
+    public void onLoadChair(List<String> chairList) {
         chairAdapter.addAll(chairList);
         chairAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void OnLoadGroup(List<String> groupList) {
+    public void onLoadGroup(List<String> groupList) {
         groupAdapter.addAll(groupList);
         groupAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void OnLoadLesson(String group) {
+    public void onLoadLesson(String group) {
         System.out.println(lesson);
         LessonActivity_.intent(this).group(group).week("green").start();
     }
 
     @Override
-    public void OnErrorLoaded(Exception ex) {
-
+    public void onErrorLoaded(Throwable t) {
+        Toast.makeText(this, "Помилка, перевірте доступ до інтернету.", Toast.LENGTH_SHORT).show();
     }
 }

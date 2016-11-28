@@ -1,4 +1,4 @@
-package ru.mgpy.Activities.Lesson;
+package ru.mgpy.Activities.Lesson.View;
 
 
 import android.os.Bundle;
@@ -14,7 +14,6 @@ import java.util.List;
 
 import ru.mgpy.Activities.Lesson.Presenter.LessonPresenter;
 import ru.mgpy.Activities.Lesson.Presenter.LessonPresenterImpl;
-import ru.mgpy.Activities.Lesson.View.LessonView;
 import ru.mgpy.Adapter.ScheduleAdapter;
 import ru.mgpy.Model.Schedule;
 import ru.mgpy.R;

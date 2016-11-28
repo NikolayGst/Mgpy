@@ -18,25 +18,25 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnLoadRe
 
     @Override
     public void getFac() {
-        mMainView.showProgressDialog("Загрузка факультетів...");
+        mMainView.showProgressDialog("Завантаження факультетів...");
         mMainInteractor.loadFacData();
     }
 
     @Override
     public void getChair(int idFac) {
-        mMainView.showProgressDialog("Загрузка кафедр...");
+        mMainView.showProgressDialog("Завантаження кафедр...");
         mMainInteractor.loadChairData(idFac);
     }
 
     @Override
     public void getGroup(int idChair) {
-        mMainView.showProgressDialog("Загрузка груп...");
+        mMainView.showProgressDialog("Завантаження груп...");
         mMainInteractor.loadGroupData(idChair);
     }
 
     @Override
     public void loadGroupLesson(String group) {
-        mMainView.showProgressDialog("загрузка расписаний...");
+        mMainView.showProgressDialog("Завантаження розкладу...");
         mMainInteractor.loadGroupLesson(group);
     }
 
@@ -44,29 +44,30 @@ public class MainPresenterImpl implements MainPresenter, MainInteractor.OnLoadRe
     @Override
     public void OnLoadFac(List<String> facList) {
         mMainView.hideProgressDialog();
-        mMainView.OnLoadFac(facList);
+        mMainView.onLoadFac(facList);
     }
 
     @Override
     public void OnLoadChair(List<String> chairList) {
         mMainView.hideProgressDialog();
-        mMainView.OnLoadChair(chairList);
+        mMainView.onLoadChair(chairList);
     }
 
     @Override
     public void OnLoadGroup(List<String> groupList) {
         mMainView.hideProgressDialog();
-        mMainView.OnLoadGroup(groupList);
+        mMainView.onLoadGroup(groupList);
     }
 
     @Override
     public void OnLoadLesson(String group) {
         mMainView.hideProgressDialog();
-        mMainView.OnLoadLesson(group);
+        mMainView.onLoadLesson(group);
     }
 
     @Override
-    public void OnError(Exception ex) {
+    public void OnError(Throwable t) {
         mMainView.hideProgressDialog();
+        mMainView.onErrorLoaded(t);
     }
 }

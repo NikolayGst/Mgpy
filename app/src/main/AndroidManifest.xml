@@ -12,12 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.Lesson.LessonActivity_"
+            android:name=".Activities.Lesson.View.LessonActivity_"
             android:screenOrientation="portrait"
             android:label="@string/app_name">
         </activity>
         <activity
-            android:name=".Activities.Main.MainActivity_"
+            android:name=".Activities.Main.View.MainActivity_"
             android:screenOrientation="portrait"
             android:theme="@style/noActionBar">
             <intent-filter>

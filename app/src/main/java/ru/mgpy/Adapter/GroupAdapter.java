@@ -8,8 +8,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import ru.mgpy.Activities.Lesson.LessonActivity_;
+import ru.mgpy.Activities.Lesson.View.LessonActivity_;
 import ru.mgpy.R;
 
 

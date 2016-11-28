@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import ru.mgpy.Activities.Lesson.LessonListFragment;
+import ru.mgpy.Activities.Lesson.View.LessonListFragment;
 
 
 public class LessonAdapter extends FragmentPagerAdapter {

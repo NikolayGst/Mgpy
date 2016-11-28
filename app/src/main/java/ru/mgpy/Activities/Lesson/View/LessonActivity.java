@@ -1,4 +1,4 @@
-package ru.mgpy.Activities.Lesson;
+package ru.mgpy.Activities.Lesson.View;
 
 import android.content.res.ColorStateList;
 import android.support.design.widget.FloatingActionButton;

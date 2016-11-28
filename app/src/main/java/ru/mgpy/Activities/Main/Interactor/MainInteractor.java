@@ -22,7 +22,7 @@ public interface MainInteractor {
 
         void OnLoadLesson(String group);
 
-        void OnError(Exception ex);
+        void OnError(Throwable t);
 
     }
 }

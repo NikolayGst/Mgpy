@@ -8,15 +8,15 @@ public interface MainView {
 
     void hideProgressDialog();
 
-    void OnLoadFac(List<String> facList);
+    void onLoadFac(List<String> facList);
 
-    void OnLoadChair(List<String> chairList);
+    void onLoadChair(List<String> chairList);
 
-    void OnLoadGroup(List<String> groupList);
+    void onLoadGroup(List<String> groupList);
 
-    void OnLoadLesson(String group);
+    void onLoadLesson(String group);
 
-    void OnErrorLoaded(Exception ex);
+    void onErrorLoaded(Throwable t);
 
 
 
